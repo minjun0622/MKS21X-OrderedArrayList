@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.utl.list;
+import java.util.list;
 
 public class NoNullArrayList<T> extends ArrayList<T> {
 public NoNullArrayList() {
@@ -14,7 +14,8 @@ public T set (int index, T element) {
     throw new IllegalArgumentException();
   }
   else {
-    return super.set(index, element);
+    super.set(index, element);
+    return element;
   }
   }
 
@@ -23,7 +24,8 @@ public T set (int index, T element) {
       throw new IllegalArgumentException();
     }
     else {
-      return super.add(element);
+      super.add(element);
+      return true;
     }
     }
 
@@ -32,7 +34,7 @@ public T set (int index, T element) {
         throw new IllegalArgumentException();
       }
       else {
-        return super.add(index, element);
+        super.add(index, element);
       }
       }
 
