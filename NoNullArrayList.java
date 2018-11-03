@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.list;
 
 public class NoNullArrayList<T> extends ArrayList<T> {
 public NoNullArrayList() {
