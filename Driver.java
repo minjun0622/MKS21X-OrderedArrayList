@@ -1,157 +1,160 @@
 public class Driver {
-	public static void main(String[] args) {
-		/*
-		      NONULLARRAYLIST
-		*/
-		    // TESTING CONSTRUCTORS AND NULL CASES
-		    System.out.println("First thing's first: No Nulls!");
 
-		    NoNullArrayList<String> fruity = new NoNullArrayList<String>(20);
-		    fruity.add("apples");
-		    fruity.add("bananas");
-		    fruity.add("watermelon");
-		    fruity.add("mangoes");
-		    System.out.println("Your fruits are: \n" + fruity.toString());
+  public static void main(String[] args) {
 
-		    NoNullArrayList<String> veggie = new NoNullArrayList<String>(20);
-		    veggie.add("cucumbers");
-		    veggie.add("carrots");
-		    veggie.add("spinach");
-		    veggie.add("bok choy");
-		//    veggie.add(null); UNCOMMENT TO TEST NULL CASES THIS SHOULD THROW BACK
-		    System.out.println("Your veggies are: \n" + veggie.toString() + "\n");
+    NoNullArrayList<String> NAL = new NoNullArrayList<>();
 
-		    // TESTING SETTING
-		    System.out.println("But now, can we eat different fruits? AND vegetables???");
-		    fruity.set(2, "dragonfruit");
-		    fruity.set(3, "strawberries");
-		    System.out.println("Our new fruits should be: \n[apples, bananas, dragonfruit, strawberries]");
-		    System.out.println("Your fruits are: \n" + fruity.toString());
+    System.out.println("NAL: " + NAL);
+    // []
+    System.out.println("isEmpty?: " + NAL.isEmpty());                       // true
 
-		    veggie.set(0, "kale");
-		//    veggie.set(5, "tomatoes"); UNCOMMENT TO TEST INDEX OUT OF BOUNDS EXCEPTION
-		//    veggie.set(3, null); UNCOMMENT TO TEST NULL CASES THIS SHOULD BE THROWN BACK
-		    System.out.println("Our new veggies should be: \n[kale, carrots, spinach, bok choy]");
-		    System.out.println("Your veggies are: \n" + veggie.toString() + "\n");
+    System.out.println();
 
-		    // TESTING ADDING
-		    System.out.println("We're still hungry though!");
-		    fruity.add("honeydew");
-		    fruity.add("grapes");
-		    fruity.add("durian");
-		    fruity.add(0, "blueberries");
-		    fruity.add(3, "oranges");
-		    System.out.println("Our long list of fruits should be: \n[blueberries, apples, bananas, oranges, dragonfruit, strawberries, honeydew, grapes, durian]");
-		    System.out.println("Your fruits are: \n" + fruity.toString());
+    NAL.add("A"); System.out.println("NAL.add(\"A\")");                     // no output
+    System.out.println("isEmpty?: " + NAL.isEmpty());                       // false
+    System.out.println("size: " + NAL.size());                              // 1
 
-		    veggie.add("pumpkin");
-		    veggie.add("squash");
-		    veggie.add(2, "lettuce");
-		    veggie.add(3, "eggplant");
-		//    veggie.add(null); UNCOMMENT TO TEST NULL CASES THIS SHOULD BE THROWN BACK
-		    System.out.println("Our long list of veggies should be: \n[kale, carrots, lettuce, eggplant, spinach, bok choy, pumpkin, squash]");
-		    System.out.println("Your veggies are: \n" + veggie.toString() + "\n");
+    System.out.println();
 
-		int c = 0;
+    System.out.println("NAL.remove(0): " + NAL.remove(0));                  // "A"
+    NAL.add("i'm"); System.out.println("NAL.add(\"i'm\")");                 // no output
+    NAL.add("invincible!"); System.out.println("NAL.add(\"invincible!\")"); // no output
+    NAL.add("you're"); System.out.println("NAL.add(\"you're\")");           // no output
+    NAL.add("a"); System.out.println("NAL.add(\"a\")");                     // no output
+    NAL.add("looney"); System.out.println("NAL.add(\"looney\")");           // no output
 
-		NoNullArrayList<String> array = new NoNullArrayList<>();
+    System.out.println();
 
-		try {
-			array.add("x");
-			if (!(""+array).equals("[x]")) System.out.println(++c+". You aren't adding properly when NoNullArrayList.add(T) is called.");
-			array.add(0,"y");
-			if (!(""+array).equals("[y, x]")) System.out.println(++c+". You aren't adding properly when NoNullArrayList.add(index, T) is called.");
-			array.set(1,"z");
-			if (!(""+array).equals("[y, z]")) System.out.println(++c+". You aren't setting properly when NoNullArrayList.set(index, T) is called.");
-		} catch (Exception e) {
-			System.out.println(++c+". You are producing a "+e.getClass().getCanonicalName()+" when adding/setting to a NoNullArrayList.");
-		}
+    System.out.println("size: " + NAL.size());                              // 5
+    System.out.println("NAL: " + NAL);
+    // [i'm, invincible!, you're, a, looney]
 
-		try {
-			try {
-				array.add(null);
-				System.out.println(++c+". You aren't catching nulls properly when NoNullArrayList.add(T) is called.");
-			} catch (IllegalArgumentException e) {}
-			if (!(""+array).equals("[y, z]")) System.out.println(++c+". You are modifying the array when NoNullArrayList.add(null) is called.");
-			try {
-				array.add(0,null);
-				System.out.println(++c+". You aren't catching nulls when NoNullArrayList.add(index, T) is called.");
-			} catch (IllegalArgumentException e) {}
-			if (!(""+array).equals("[y, z]")) System.out.println(++c+". You are modifying the array when NoNullArrayList.add(index, null) is called.");
-			try {
-				array.set(1,null);
-				System.out.println(++c+". You aren't catching nulls when NoNullArrayList.set(index, T) is called.");
-			} catch (IllegalArgumentException e) {}
-			if (!(""+array).equals("[y, z]")) System.out.println(++c+". You are modifying the array when NoNullArrayList.set(index, null) is called.");
-		} catch (Exception e) {
-			System.out.println(++c+". You are producing a "+e.getClass().getCanonicalName()+" when adding/setting a null value to a NoNullArrayList. You should be throwing IllegalArgumentException instead.");
-		}
+    // NOTE: comment these null tests out accordingly, as thrown errors stop the program
 
-		array.clear();
+    NAL.add(null); System.out.println("NAL.add(null)");
+    // [i'm, invincible!, you're, a, looney, null]
+    // IllegalArgumentException: null, invalid input
 
-		try {
-			if (!array.add("a")) System.out.println(++c+". You aren't returning true when NoNullArrayList.add(T) is called.");
-			if (!array.set(0, "b").equals("a")) System.out.println(++c+". You aren't returning the old element at <index> when NoNullArrayList.set(index, T) is called.");
-		} catch (Exception e) {}
+    NAL.add(null); System.out.println("NAL.add(2,null)");
+    // [i'm, invincible!, null, you're, a, looney]
+    // IllegalArgumentException: null, invalid input
 
-		array = new OrderedArrayList<>();
+    NAL.set(0,null); System.out.println("NAL.set(0,null)");
+    // [null, invincible!, you're, a, looney]
+    // IllegalArgumentException: null, invalid input
 
-		try {
-			array.add("z");
-			array.add("x");
-			array.add("y");
-			if (!(""+array).equals("[x, y, z]")) System.out.println(++c+". You aren't adding properly when OrderedArrayList.add(T) is called.");
-			array.add(2,"c");
-			array.add(1,"a");
-			array.add(0,"b");
-			if (!(""+array).equals("[a, b, c, x, y, z]")) {
-				System.out.print(++c+". You aren't adding properly when OrderedArrayList.add(index, T) is called. ");
-				if (array.size() == 6) System.out.println("Your elements are out of order. :(");
-				else System.out.println("Some elements aren't getting added. They feel left out :(");
-			}
-			array.set(2,"r");
-			array.set(1,"p");
-			array.set(0,"q");
-			if (!(""+array).equals("[p, q, r, x, y, z]")) {
-				System.out.print(++c+". You aren't adding properly when OrderedArrayList.set(index, T) is called. ");
-				if (array.size() > 6) System.out.println("You aren't removing elements properly!");
-				else if (array.size() < 6) System.out.println("Some elements aren't getting added. They feel left out :(");
-				else if ((""+array).contains("a") || (""+array).contains("b") || (""+array).contains("c")) System.out.println("You aren't removing elements properly!");
-				else System.out.println("Your elements are out of order. :(");
-			}
-		} catch (Exception e) {
-			System.out.println(++c+". You are producing a "+e.getClass().getCanonicalName()+" when adding/setting to an OrderedArrayList.");
-		}
+    System.out.println("\n");
 
-		try {
-			try {
-				array.add(null);
-				System.out.println(++c+". You aren't catching nulls properly when OrderedArrayList.add(T) is called.");
-			} catch (IllegalArgumentException e) {}
-			if (!(""+array).equals("[p, q, r, x, y, z]")) System.out.println(++c+". You are modifying the array when OrderedArrayList.add(null) is called.");
-			try {
-				array.add(0,null);
-				System.out.println(++c+". You aren't catching nulls when OrderedArrayList.add(index, T) is called.");
-			} catch (IllegalArgumentException e) {}
-			if (!(""+array).equals("[p, q, r, x, y, z]")) System.out.println(++c+". You are modifying the array when OrderedArrayList.add(index, null) is called.");
-			try {
-				array.set(1,null);
-				System.out.println(++c+". You aren't catching nulls when OrderedArrayList.set(index, T) is called.");
-			} catch (IllegalArgumentException e) {}
-			if (!(""+array).equals("[p, q, r, x, y, z]")) System.out.println(++c+". You are modifying the array when OrderedArrayList.set(index, null) is called.");
-		} catch (Exception e) {
-			System.out.println(++c+". You are producing a "+e.getClass().getCanonicalName()+" when adding/setting a null value to an OrderedArrayList. You should be throwing IllegalArgumentException instead.");
-		}
+    OrderedArrayList<String> OAL = new OrderedArrayList<>();
 
-		array.clear();
+    System.out.println("OAL: " + OAL);
+    // []
+    System.out.println("isEmpty?: " + OAL.isEmpty());                       // true
 
-		try {
-			if (!array.add("a")) System.out.println(++c+". You aren't returning true when OrderedArrayList.add(T) is called.");
-			if (!array.set(0, "b").equals("a")) System.out.println(++c+". You aren't returning the old element at <index> when OrderedArrayList.set(index, T) is called.");
-		} catch (Exception e) {}
+    System.out.println();
 
-		if (c == 0) System.out.println("Your code passed every test. Nice work.");
-		else System.out.println("\nYou produced "+c+" unexpected results. Keep debugging!");
+    OAL.add("A"); System.out.println("OAL.add(\"A\")");                     // no output
+    System.out.println("isEmpty?: " + OAL.isEmpty());                       // false
+    System.out.println("size: " + OAL.size());                              // 1
 
-	}
+    System.out.println();
+
+    System.out.println("OAL.remove(0): " + OAL.remove(0));                  // "A"
+    OAL.add("B"); System.out.println("OAL.add(\"B\")");                     // no output
+    OAL.add("C"); System.out.println("OAL.add(\"C\")");                     // no output
+
+    System.out.println();
+
+    System.out.println("size: " + OAL.size());                              // 2
+    System.out.println("OAL: " + OAL);
+    // [B, C]
+
+    System.out.println();
+
+    OAL.add("R"); System.out.println("OAL.add(\"R\")");                     // no output
+    System.out.println("OAL: " + OAL);
+    // [B, C, R]
+
+    System.out.println();
+
+    OAL.add("A"); System.out.println("OAL.add(\"A\")");                     // no output
+    System.out.println("OAL: " + OAL);
+    // [A, B, C, R]
+
+    System.out.println();
+
+    OAL.add(0,"F"); System.out.println("OAL.add(0,\"F\")");                 // no output
+    System.out.println("OAL: " + OAL);
+    // [A, B, C, F, R]
+
+    System.out.println();
+
+    OAL.add(2,"X"); System.out.println("OAL.add(2,\"X\")");                 // no output
+    System.out.println("OAL: " + OAL);
+    // [A, B, C, F, R, X]
+
+    System.out.println();
+
+    OAL.set(1,"G"); System.out.println("OAL.set(1,\"G\")");                 // no output
+    System.out.println("OAL: " + OAL);
+    // [A, C, F, G, R, X]
+
+    System.out.println("\n");
+
+    OrderedArrayList<Integer> OAL2 = new OrderedArrayList<>();
+
+    System.out.println("OAL2: " + OAL2);
+    // []
+    System.out.println("isEmpty?: " + OAL2.isEmpty());                      // true
+
+    System.out.println();
+
+    OAL2.add(0); System.out.println("OAL2.add(1)");                         // no output
+    System.out.println("isEmpty?: " + OAL2.isEmpty());                      // false
+    System.out.println("size: " + OAL2.size());                             // 1
+
+    System.out.println();
+
+    System.out.println("OAL2.remove(0): " + OAL2.remove(0));                // "A"
+    OAL2.add(1); System.out.println("OAL2.add(1)");                         // no output
+    OAL2.add(2); System.out.println("OAL2.add(2)");                         // no output
+
+    System.out.println();
+
+    System.out.println("size: " + OAL2.size());                             // 2
+    System.out.println("OAL2: " + OAL2);
+    // [1, 2]
+
+    System.out.println();
+
+    OAL2.add(15); System.out.println("OAL2.add(15)");                       // no output
+    System.out.println("OAL2: " + OAL2);
+    // [1, 2, 15]
+
+    System.out.println();
+
+    OAL2.add(0); System.out.println("OAL2.add(0)");                         // no output
+    System.out.println("OAL2: " + OAL2);
+    // [0, 1, 2, 15]
+
+    System.out.println();
+
+    OAL2.add(0,9); System.out.println("OAL2.add(0,9)");                     // no output
+    System.out.println("OAL2: " + OAL2);
+    // [0, 1, 2, 9, 15]
+
+    System.out.println();
+
+    OAL2.add(2,22); System.out.println("OAL2.add(2,22)");                   // no output
+    System.out.println("OAL2: " + OAL2);
+    // [0, 1, 2, 9, 15, 22]
+
+    System.out.println();
+
+    OAL2.set(1,10); System.out.println("OAL2.set(2,10)");                   // no output
+    System.out.println("OAL2: " + OAL2);
+    // [0, 2, 9, 10, 15, 22]
+
+  }
+
 }

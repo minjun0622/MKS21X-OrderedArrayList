@@ -17,9 +17,10 @@ public boolean add(T element) {
 }
 
   public T set(int index, T element) {
+    T value = this.get(index);
     this.remove(index);
     this.add(element);
-    return element;
+    return value;
   }
 
   public void add(int index, T element) {
